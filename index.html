@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/acer/Downloads/endrossi_v5.html -->
+<!-- saved from url=(0050)file:///C:/Users/acer/Downloads/endrossi_v5_2.html -->
 <html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -126,7 +126,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
     <input class="ps-inp" id="ps-name" placeholder="ชื่อโปรไฟล์ (เช่น Sarat, MyPort)" maxlength="24">
     <button class="ps-btn" onclick="createProfile()" style="background:var(--ac);color:#07090d">+ สร้างโปรไฟล์ใหม่</button>
     <div style="font-size:10px;color:var(--dim);text-align:center;margin:6px 0">หรือเลือกโปรไฟล์ที่มีอยู่</div>
-    <div class="ps-list" id="ps-list"><div style="font-size:11px;color:var(--dim);text-align:center">ยังไม่มีโปรไฟล์</div></div>
+    <div class="ps-list" id="ps-list"><div class="ps-item"><div><div style="font-size:12px;font-weight:500;color:var(--tx)">Tagi</div><div style="font-size:10px;color:var(--mt)">0 positions · $66,157.17</div></div><button class="ps-del" onclick="deleteProfile(event,&#39;Tagi&#39;)">✕</button></div></div>
     <div style="margin-top:12px;font-size:10px;color:var(--dim);line-height:1.6;text-align:center">
       แต่ละโปรไฟล์แยกข้อมูลกันสมบูรณ์<br>
       เพื่อนใช้โปรไฟล์ของตัวเอง ไม่เห็นพอร์ตคุณ
@@ -511,6 +511,13 @@ async function fetchAllSignals() {
   var tickers = portfolio.map(function(p){return p.ticker;});
   var batchSize = 15; // Claude can handle ~15 at once
   var count = 0;
+  // Mark all cells loading
+  tickers.forEach(function(tk){
+    var c = document.getElementById('mkt-cell-' + tk);
+    if (c) c.innerHTML = '<span class="msig" style="background:rgba(56,189,248,.07);color:#38bdf8;border:1px solid rgba(56,189,248,.2)">⌛</span>';
+    rtData[tk] = {loading:true};
+  });
+
   for (var i = 0; i < tickers.length; i += batchSize) {
     var batch = tickers.slice(i, i+batchSize);
     btn.textContent = '⌛ ' + Math.min(i+batchSize,tickers.length) + '/' + tickers.length;
@@ -537,19 +544,25 @@ async function fetchAllSignals() {
     }
   }
   calcRtPnL();
-  render();
+  // Update all cells in-place without full re-render
+  portfolio.forEach(function(p){
+    var c = document.getElementById('mkt-cell-' + p.ticker);
+    if (c) c.innerHTML = mktSigHtml(p.ticker);
+    updatePriceCell(p.ticker);
+  });
+  updateMktStats();
   document.getElementById('rt-time').textContent = new Date().toLocaleTimeString('th-TH');
   btn.textContent = '⟳ Signals'; btn.disabled = false;
   showToast('✓ โหลด signal ' + count + ' ตัว');
 }
 
 async function fetchOneSignal(ticker) {
-  // Mark loading
-  rtData[ticker] = {loading:true};
-  render();
+  // Mark loading in cell only — don't full re-render
+  var cell = document.getElementById('mkt-cell-' + ticker);
+  if (cell) cell.innerHTML = '<span class="msig" style="background:rgba(56,189,248,.07);color:#38bdf8;border:1px solid rgba(56,189,248,.2)">⌛</span>';
   try {
     var results = await fetchSignalBatch([ticker]);
-    if (results.length) {
+    if (results && results.length) {
       var r = results[0];
       rtData[ticker] = {
         price:r.price||0, changePct:r.changePct||0,
@@ -557,13 +570,42 @@ async function fetchOneSignal(ticker) {
         rsi:r.rsi||0, sma20rel:r.sma20rel||0, macdBull:r.macdBull||false,
       };
     } else {
-      rtData[ticker] = {};
+      rtData[ticker] = {msig:'neut', detail:'no data'};
     }
   } catch(e) {
-    rtData[ticker] = {};
+    rtData[ticker] = {msig:null};
   }
-  calcRtPnL(); render();
+  // Update just this cell + PnL — don't full re-render
+  if (cell) cell.innerHTML = mktSigHtml(ticker);
+  updatePriceCell(ticker);
+  calcRtPnL();
+  updateMktStats();
   document.getElementById('rt-time').textContent = new Date().toLocaleTimeString('th-TH');
+}
+
+function updatePriceCell(ticker) {
+  var cell = document.getElementById('price-cell-' + ticker);
+  if (!cell) return;
+  var pm = {};
+  portfolio.forEach(function(p){ pm[p.ticker]=p; });
+  var p = pm[ticker]; if (!p) return;
+  var rt = rtData[ticker];
+  var curPx = rt&&rt.price ? rt.price : p.price;
+  var pnlPct = p.avgCost>0&&curPx>0 ? (curPx-p.avgCost)/p.avgCost*100 : p.totalReturn||0;
+  var dayChg = rt ? rt.changePct : null;
+  var html = '';
+  if (curPx>0) html += '<div style="font-size:11px;color:var(--tx)">$'+curPx.toFixed(2)+(rt&&rt.price?'<span style="font-size:8px;color:var(--ac)"> ●</span>':'')+'</div>';
+  html += '<div style="font-size:10px;margin-top:1px;color:'+(pnlPct>=0?'#4ade80':'#f87171')+'">'+(pnlPct>=0?'+':'')+pnlPct.toFixed(1)+'%';
+  if (dayChg!==null) html += ' <span style="color:var(--dim)">('+( dayChg>=0?'+':'')+dayChg.toFixed(1)+'%d)</span>';
+  html += '</div>';
+  cell.innerHTML = html;
+}
+
+function updateMktStats() {
+  var bull=0, bear=0;
+  Object.values(rtData).forEach(function(d){ if(d.msig==='bull')bull++; else if(d.msig==='bear')bear++; });
+  document.getElementById('s-bull').textContent = bull||'—';
+  document.getElementById('s-bear').textContent = bear||'—';
 }
 
 function mktSigHtml(ticker) {
@@ -704,9 +746,9 @@ function render() {
         '</div></td>'+
       '<td style="color:'+diffC+';font-weight:500">'+(r.diff>0?'+':'')+r.diff.toFixed(2)+'%</td>'+
       '<td class="ch" style="font-size:11px;color:var(--mt)">'+(r.avgCost>0?'$'+r.avgCost.toFixed(2):'—')+'</td>'+
-      '<td class="ch">'+priceCell+'</td>'+
+      '<td class="ch" id="price-cell-'+r.ticker+'">'+priceCell+'</td>'+
       '<td><span class="psig" style="background:'+ps.bg+';color:'+ps.color+';border:1px solid '+ps.bd+'">'+ps.lbl+'</span></td>'+
-      '<td>'+mktSigHtml(r.ticker)+'</td>'+
+      '<td id="mkt-cell-'+r.ticker+'">'+mktSigHtml(r.ticker)+'</td>'+
       '<td class="ch" style="color:var(--mt);white-space:nowrap;font-size:11px">'+dcaTxt+'</td>'+
       '<td class="ch" style="color:var(--dim);font-size:10px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+r.watch+'">●</td>';
     tbody.appendChild(tr);
