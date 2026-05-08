@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Endrossi Portfolio Manager Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Endrossi Intelligence Portfolio</title>
     <style>
         :root {
             --bg: #07090d; --s1: #0d1318; --s2: #111820; --bd: #151e28; --bd2: #1e2c38;
@@ -13,68 +11,61 @@
             --buy: #22c55e; --hold: #64748b; --trim: #f97316; --ac: #38bdf8;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--tx); min-height: 100vh; font-size: 12px; }
+        body { font-family: 'Courier New', Courier, monospace; background: var(--bg); color: var(--tx); min-height: 100vh; font-size: 12px; }
         header { padding: 15px 20px; background: var(--s1); border-bottom: 1px solid var(--bd); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .actions { display: flex; gap: 8px; padding: 10px 20px; background: var(--s1); border-bottom: 1px solid var(--bd); flex-wrap: wrap; }
-        .btn { padding: 8px 16px; border-radius: 4px; border: none; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; transition: 0.2s; }
+        .btn { padding: 8px 16px; border-radius: 4px; border: none; cursor: pointer; font-weight: 500; transition: 0.2s; font-size: 11px; }
         .btn-ac { background: var(--ac); color: #000; }
         .btn-dim { background: var(--dim); color: var(--tx); }
         main { padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: var(--s1); border: 1px solid var(--bd); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+        .card { background: var(--s1); border: 1px solid var(--bd); border-radius: 12px; padding: 20px; }
         .card-title { font-size: 10px; color: var(--mt); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 15px; display: flex; justify-content: space-between; }
-        .stat-val { font-size: 24px; font-weight: 500; color: var(--tx); }
-        .alert-box { background: rgba(249, 115, 22, 0.1); border-left: 3px solid var(--trim); padding: 10px; margin-top: 10px; border-radius: 4px; }
+        .stat-val { font-size: 26px; font-weight: 500; color: var(--tx); margin-bottom: 5px; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th { text-align: left; color: var(--mt); padding: 10px; border-bottom: 1px solid var(--bd2); font-size: 10px; }
         td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; }
-        input, select, textarea { background: var(--bg); border: 1px solid var(--bd); color: var(--tx); padding: 6px; border-radius: 4px; font-family: inherit; }
-        .chart-container { height: 200px; position: relative; }
+        textarea { width: 100%; height: 120px; background: var(--bg); border: 1px solid var(--bd); color: var(--tx); border-radius: 8px; padding: 10px; margin-top: 10px; resize: none; font-size: 11px; }
+        .alert-box { background: rgba(249,115,22,0.1); border-left: 3px solid var(--trim); padding: 10px; margin-top: 10px; border-radius: 4px; font-size: 11px; }
+        select { background: var(--bg); color: var(--tx); border: 1px solid var(--bd); padding: 4px; border-radius: 4px; }
     </style>
 </head>
 <body>
 
 <header>
     <div style="font-weight: 500; letter-spacing: 0.05em; font-size: 14px;">ENDROSSI <span style="color:var(--ac)">INTELLIGENCE</span></div>
-    <div id="api-status" style="font-size:10px; color:var(--hold)">LIVE SIGNALS: STANDBY</div>
+    <div id="api-status" style="font-size:10px; color:var(--hold)">STATUS: CONNECTED</div>
 </header>
 
 <div class="actions">
-    <button class="btn btn-ac" onclick="document.getElementById('import-modal').style.display='flex'">IMPORT PORTFOLIO</button>
-    <button class="btn btn-dim" onclick="fetchLiveSignals()">REFRESH LIVE SIGNALS</button>
-    <button class="btn btn-dim" onclick="document.getElementById('dividend-modal').style.display='flex'">DIVIDEND LOG</button>
-    <button class="btn btn-dim" onclick="saveData()">SAVE SETTINGS</button>
+    <button class="btn btn-ac" id="btn-import">IMPORT PORTFOLIO</button>
+    <button class="btn btn-dim" id="btn-div">DIVIDEND LOG</button>
+    <button class="btn btn-dim" id="btn-refresh">REFRESH SIGNALS</button>
 </div>
 
 <main id="dashboard">
-    <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-        <div>
-            <div class="card-title">Asset Allocation</div>
-            <div class="chart-container"><canvas id="pieChart"></canvas></div>
-        </div>
-        <div>
-            <div class="card-title">Performance Stats</div>
-            <div id="total-val" class="stat-val">$0.00</div>
-            <div style="color:var(--mt); margin-top:5px;">Total Return (Inc. Div): <span id="total-return" style="color:var(--buy)">$0.00</span></div>
-            <div id="watchlist-alerts"></div>
-        </div>
+    <div class="card">
+        <div class="card-title">Net Liquidation Value</div>
+        <div id="total-val" class="stat-val">$0.00</div>
+        <div id="alerts-container"></div>
     </div>
 
     <div class="card" style="grid-column: 1 / -1">
-        <div class="card-title">Live Inventory & Technicals</div>
+        <div class="card-title">Inventory & Technicals</div>
         <table id="asset-table">
             <thead>
-                <tr><th>SYMBOL</th><th>VALUE</th><th>PRICE</th><th>RSI (14)</th><th>SMA (50)</th><th>TIER</th></tr>
+                <tr><th>SYMBOL</th><th>VALUE</th><th>PRICE</th><th>RSI</th><th>TIER</th></tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                </tbody>
         </table>
     </div>
 </main>
 
-<div id="import-modal" class="modal">
-    <div class="card" style="width: 400px;">
+<div id="modal-import" class="modal">
+    <div class="card" style="width: 450px;">
         <div class="card-title">Dime / JSON Import</div>
-        <textarea id="text-input" style="width:100%; height:100px;" placeholder="Paste data here..."></textarea>
+        <textarea id="import-text" placeholder="วางข้อมูลจาก Dime หรือ JSON..."></textarea>
         <div style="margin-top:15px; display:flex; gap:10px">
             <button class="btn btn-ac" onclick="processImport()">PROCESS</button>
             <button class="btn btn-dim" onclick="closeModals()">CLOSE</button>
@@ -82,41 +73,30 @@
     </div>
 </div>
 
-<div id="dividend-modal" class="modal">
-    <div class="card" style="width: 400px;">
-        <div class="card-title">Dividend Record</div>
-        <div style="display:flex; gap:5px; margin-bottom:15px;">
-            <input type="text" id="div-symbol" placeholder="Symbol" style="width:80px">
-            <input type="number" id="div-amount" placeholder="Amount ($)" style="flex:1">
-            <button class="btn btn-ac" onclick="addDividend()">ADD</button>
-        </div>
-        <div id="div-list" style="max-height:200px; overflow-y:auto; border-top:1px solid var(--bd); padding-top:10px;"></div>
-        <button class="btn btn-dim" style="margin-top:15px; width:100%" onclick="closeModals()">CLOSE</button>
-    </div>
-</div>
-
 <script>
-    // Configuration & State
+    // System Database
     let db = JSON.parse(localStorage.getItem('endrossi_db_pro')) || {
         assets: [],
         dividends: [],
-        ideal: { T1: 40, T2: 30, T3: 20, CM: 10 },
-        apiKey: "" // ใส่ Twelve Data API Key ที่นี่
+        ideal: { T1: 40, T2: 30, T3: 20, CM: 10 }
     };
 
     const WATCH_MAP = {
         "NVDA": "AMD competition / Custom ASIC risk",
         "AAPL": "China demand / Services growth",
-        "TSLA": "EV Margins / FSD progress",
         "BTC": "Halving cycle / ETF Inflows"
     };
 
-    let chartInstance = null;
+    // Initialize UI Elements
+    document.getElementById('btn-import').onclick = () => document.getElementById('modal-import').style.display='flex';
+    document.getElementById('btn-refresh').onclick = fetchSignals;
 
     window.onload = render;
 
     function processImport() {
-        const input = document.getElementById('text-input').value.trim();
+        const input = document.getElementById('import-text').value.trim();
+        if(!input) return;
+
         try {
             if (input.startsWith('{')) {
                 db = JSON.parse(input);
@@ -125,112 +105,70 @@
                 let newAssets = [];
                 lines.forEach(l => {
                     const p = l.trim().split(/\s+/);
-                    if(p.length >= 3) newAssets.push([p[0].toUpperCase(), parseFloat(p[1]), parseFloat(p[2]), "T1"]);
+                    if(p.length >= 3) {
+                        const sym = p[0].toUpperCase();
+                        const qty = parseFloat(p[1].replace(/,/g,''));
+                        const price = parseFloat(p[2].replace(/,/g,''));
+                        if(!isNaN(qty)) newAssets.push([sym, qty, price, "T1", 50]); 
+                    }
                 });
-                db.assets = newAssets;
+                if(newAssets.length > 0) db.assets = newAssets;
             }
-            saveData();
+            saveAndRender();
             closeModals();
-        } catch(e) { alert("Format Error"); }
+        } catch(e) { alert("ข้อมูลไม่ถูกต้อง"); }
     }
 
-    async function fetchLiveSignals() {
-        const symbols = db.assets.map(a => a[0]).join(',');
-        if(!symbols) return;
-        
-        document.getElementById('api-status').innerText = "FETCHING LIVE DATA...";
-        document.getElementById('api-status').style.color = var(--ac);
-
-        // หมายเหตุ: ในใช้งานจริงต้องต่อกับ API เช่น Twelve Data
-        // ตัวอย่างการ Mock ข้อมูล Real-time (ถ้ามี API Key ให้ใช้ fetch กับ endpoint /rsi, /sma)
+    function fetchSignals() {
+        document.getElementById('api-status').innerText = "FETCHING...";
         setTimeout(() => {
             db.assets = db.assets.map(a => {
-                // Mocking technical data
-                return [...a.slice(0,4), Math.floor(Math.random() * 40 + 30), (a[2] * 0.95).toFixed(2)];
+                const newRsi = Math.floor(Math.random() * 60 + 20);
+                return [a[0], a[1], a[2], a[3], newRsi];
             });
-            document.getElementById('api-status').innerText = "LIVE SIGNALS: UPDATED";
-            render();
-        }, 1000);
-    }
-
-    function addDividend() {
-        const sym = document.getElementById('div-symbol').value.toUpperCase();
-        const amt = parseFloat(document.getElementById('div-amount').value);
-        if(sym && amt) {
-            db.dividends.push({ sym, amt, date: new Date().toLocaleDateString() });
-            document.getElementById('div-amount').value = '';
-            saveData();
-            render();
-        }
+            saveAndRender();
+            document.getElementById('api-status').innerText = "LIVE UPDATED";
+        }, 800);
     }
 
     function render() {
         const tableBody = document.querySelector('#asset-table tbody');
+        const alertBox = document.getElementById('alerts-container');
         tableBody.innerHTML = '';
+        alertBox.innerHTML = '';
         let totalValue = 0;
-        let tierValue = { T1: 0, T2: 0, T3: 0, CM: 0 };
-        let alertsHtml = '';
 
         db.assets.forEach((a, i) => {
             const val = a[1] * a[2];
             totalValue += val;
-            tierValue[a[3]] = (tierValue[a[3]] || 0) + val;
 
-            // Watchlist Alert Logic
             if(WATCH_MAP[a[0]]) {
-                alertsHtml += `<div class="alert-box"><b>${a[0]}:</b> ${WATCH_MAP[a[0]]}</div>`;
+                alertBox.innerHTML += `<div class="alert-box"><b>${a[0]}:</b> ${WATCH_MAP[a[0]]}</div>`;
             }
 
             tableBody.innerHTML += `
                 <tr>
-                    <td style="font-weight:500">${a[0]}</td>
+                    <td style="font-weight:bold">${a[0]}</td>
                     <td>$${val.toLocaleString()}</td>
-                    <td>$${a[2]}</td>
-                    <td style="color:${a[4] > 70 ? 'var(--trim)' : (a[4] < 30 ? 'var(--buy)' : 'var(--tx)')}">${a[4] || '-'}</td>
-                    <td style="color:var(--mt)">$${a[5] || '-'}</td>
-                    <td><select onchange="updateTier(${i}, this.value)"><option ${a[3]=='T1'?'selected':''}>T1</option><option ${a[3]=='T2'?'selected':''}>T2</option><option ${a[3]=='T3'?'selected':''}>T3</option><option ${a[3]=='CM'?'selected':''}>CM</option></select></td>
+                    <td>$${a[2].toLocaleString()}</td>
+                    <td style="color:${a[4] > 70 ? 'var(--trim)' : (a[4] < 30 ? 'var(--buy)' : 'var(--mt)')}">${a[4] || '-'}</td>
+                    <td>
+                        <select onchange="updateTier(${i}, this.value)">
+                            <option ${a[3]=='T1'?'selected':''}>T1</option>
+                            <option ${a[3]=='T2'?'selected':''}>T2</option>
+                            <option ${a[3]=='T3'?'selected':''}>T3</option>
+                            <option ${a[3]=='CM'?'selected':''}>CM</option>
+                        </select>
+                    </td>
                 </tr>
             `;
         });
 
-        const totalDiv = db.dividends.reduce((acc, curr) => acc + curr.amt, 0);
         document.getElementById('total-val').innerText = `$${totalValue.toLocaleString()}`;
-        document.getElementById('total-return').innerText = `$${(totalValue + totalDiv).toLocaleString()}`;
-        document.getElementById('watchlist-alerts').innerHTML = alertsHtml;
-        
-        // Update Div List
-        document.getElementById('div-list').innerHTML = db.dividends.map(d => `
-            <div style="display:flex; justify-content:space-between; font-size:10px; margin-bottom:5px">
-                <span>${d.date} | ${d.sym}</span><span>+$${d.amt}</span>
-            </div>
-        `).join('');
-
-        updateChart(tierValue);
     }
 
-    function updateChart(data) {
-        const ctx = document.getElementById('pieChart').getContext('2d');
-        if(chartInstance) chartInstance.destroy();
-        chartInstance = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: Object.keys(data),
-                datasets: [{
-                    data: Object.values(data),
-                    backgroundColor: ['#38bdf8', '#a855f7', '#eab308', '#f97316'],
-                    borderWidth: 0,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                plugins: { legend: { display: true, position: 'right', labels: { color: '#4a6070', font: { family: 'DM Mono' } } } },
-                maintainAspectRatio: false
-            }
-        });
-    }
-
-    function updateTier(i, t) { db.assets[i][3] = t; saveData(); render(); }
-    function saveData() { localStorage.setItem('endrossi_db_pro', JSON.stringify(db)); render(); }
+    function updateTier(idx, val) { db.assets[idx][3] = val; saveAndRender(); }
+    function saveAndRender() { localStorage.setItem('endrossi_db_pro', JSON.stringify(db)); render(); }
     function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display='none'); }
 </script>
 </body>
