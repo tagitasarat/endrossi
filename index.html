@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0045)file:///C:/Users/acer/Downloads/index_10.html -->
+<html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Endrossi Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 :root{
   --bg:#07090d;--s1:#0d1318;--s2:#111820;--bd:#151e28;--bd2:#1e2c38;
@@ -126,7 +126,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
     <input class="ps-inp" id="ps-name" placeholder="ชื่อโปรไฟล์ (เช่น Sarat, MyPort)" maxlength="24">
     <button class="ps-btn" onclick="createProfile()" style="background:var(--ac);color:#07090d">+ สร้างโปรไฟล์ใหม่</button>
     <div style="font-size:10px;color:var(--dim);text-align:center;margin:6px 0">หรือเลือกโปรไฟล์ที่มีอยู่</div>
-    <div class="ps-list" id="ps-list"></div>
+    <div class="ps-list" id="ps-list"><div class="ps-item"><div><div style="font-size:12px;font-weight:500;color:var(--tx)">Tagi</div><div style="font-size:10px;color:var(--mt)">0 positions · $66,157.17</div></div><button class="ps-del" onclick="deleteProfile(event,&#39;Tagi&#39;)">✕</button></div><div class="ps-item"><div><div style="font-size:12px;font-weight:500;color:var(--tx)">Sarat</div><div style="font-size:10px;color:var(--mt)">0 positions · $66,157.17</div></div><button class="ps-del" onclick="deleteProfile(event,&#39;Sarat&#39;)">✕</button></div></div>
     <div style="margin-top:12px;font-size:10px;color:var(--dim);line-height:1.6;text-align:center">
       แต่ละโปรไฟล์แยกข้อมูลกันสมบูรณ์<br>
       เพื่อนใช้โปรไฟล์ของตัวเอง ไม่เห็นพอร์ตคุณ
@@ -151,26 +151,26 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
       <div>
         <div class="pnl-val" id="aum-display" onclick="startAumEdit()" title="คลิกแก้" style="color:var(--ac);cursor:pointer">$66,157</div>
         <div style="font-size:10px;color:var(--mt);margin-top:1px">AUM</div>
-        <input id="aum-inp" type="number" style="display:none;width:100px;background:var(--s2);border:1px solid var(--ac);border-radius:5px;color:var(--ac);font-family:'DM Mono',monospace;font-size:13px;padding:2px 6px;text-align:right;outline:none">
+        <input id="aum-inp" type="number" style="display:none;width:100px;background:var(--s2);border:1px solid var(--ac);border-radius:5px;color:var(--ac);font-family:&#39;DM Mono&#39;,monospace;font-size:13px;padding:2px 6px;text-align:right;outline:none">
       </div>
       <div>
         <div class="pnl-val" id="static-pnl" style="color:#64748b">—</div>
-        <div style="font-size:10px;color:var(--mt);margin-top:1px">P&L (DIME)</div>
+        <div style="font-size:10px;color:var(--mt);margin-top:1px">P&amp;L (DIME)</div>
       </div>
       <div>
         <div style="display:flex;align-items:center;gap:6px">
           <div class="pnl-val" id="rt-pnl" style="color:#64748b">—</div>
-          <button id="fetch-btn" onclick="fetchAllSignals()" title="โหลด Market Signal + Realtime P&L" style="font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;background:rgba(56,189,248,.1);color:#38bdf8;border:1px solid rgba(56,189,248,.25);cursor:pointer">⟳ Signals</button>
+          <button id="fetch-btn" onclick="fetchAllSignals()" title="โหลด Market Signal + Realtime P&amp;L" style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;padding:2px 8px;border-radius:4px;background:rgba(56,189,248,.1);color:#38bdf8;border:1px solid rgba(56,189,248,.25);cursor:pointer">⟳ Signals</button>
         </div>
-        <div style="font-size:10px;color:var(--mt);margin-top:1px">P&L Realtime <span id="rt-time" style="color:var(--dim)"></span></div>
+        <div style="font-size:10px;color:var(--mt);margin-top:1px">P&amp;L Realtime <span id="rt-time" style="color:var(--dim)"></span></div>
       </div>
     </div>
   </div>
   <div class="tier-bar" id="tier-bar"></div>
   <div class="tabs">
-    <button class="tab on" onclick="showTab('dash')">📊 พอร์ต</button>
-    <button class="tab" onclick="showTab('upload')">⬆ Upload PDF</button>
-    <button class="tab" onclick="showTab('ideal')">⚙ Ideal</button>
+    <button class="tab on" onclick="showTab(&#39;dash&#39;)">📊 พอร์ต</button>
+    <button class="tab" onclick="showTab(&#39;upload&#39;)">⬆ Upload PDF</button>
+    <button class="tab" onclick="showTab(&#39;ideal&#39;)">⚙ Ideal</button>
   </div>
 </div>
 
@@ -209,7 +209,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
     <div style="font-size:36px;margin-bottom:12px">📄</div>
     <div style="font-size:14px;font-weight:500;color:var(--tx);margin-bottom:6px">ยังไม่มีข้อมูลพอร์ต</div>
     <div style="font-size:12px;margin-bottom:16px">Upload PDF รายงาน DIME ประจำเดือนเพื่อเริ่มต้น</div>
-    <button onclick="showTab('upload')" style="padding:9px 20px;border-radius:8px;background:rgba(56,189,248,.1);color:var(--ac);border:1px solid rgba(56,189,248,.25);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer">⬆ Upload PDF ตอนนี้</button>
+    <button onclick="showTab(&#39;upload&#39;)" style="padding:9px 20px;border-radius:8px;background:rgba(56,189,248,.1);color:var(--ac);border:1px solid rgba(56,189,248,.25);font-family:&#39;DM Mono&#39;,monospace;font-size:12px;cursor:pointer">⬆ Upload PDF ตอนนี้</button>
   </div>
   <div id="table-wrap" class="twrap">
     <table>
@@ -217,7 +217,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
         <th>TICKER</th><th>COMPANY</th>
         <th class="ch">TIER</th>
         <th>IDEAL</th><th>ปัจจุบัน</th><th>ต่าง</th>
-        <th class="ch">ต้นทุน</th><th class="ch">ราคา/P&L</th>
+        <th class="ch">ต้นทุน</th><th class="ch">ราคา/P&amp;L</th>
         <th>SIGNAL</th>
         <th>MARKET<br><span style="font-weight:300;font-size:9px;letter-spacing:0">RSI·MACD·SMA</span></th>
         <th class="ch">DCA ไม้ $30</th>
@@ -228,17 +228,14 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
   </div>
 </div>
   </div><!-- /table-wrap -->
-</div>
+
 
 <div id="upload-tab" style="display:none">
   <div style="margin-bottom:10px">
     <div style="font-size:13px;font-weight:500;color:var(--tx);margin-bottom:3px">Upload DIME Monthly Statement</div>
     <div style="font-size:11px;color:var(--mt);line-height:1.6">Upload PDF → Claude อ่านและดึงข้อมูลทุก position อัตโนมัติ</div>
   </div>
-  <div class="drop" id="drop" onclick="document.getElementById('file-inp').click()"
-    ondragover="event.preventDefault();this.classList.add('drag')"
-    ondragleave="this.classList.remove('drag')"
-    ondrop="event.preventDefault();this.classList.remove('drag');handleFile(event.dataTransfer.files[0])">
+  <div class="drop" id="drop" onclick="document.getElementById(&#39;file-inp&#39;).click()" ondragover="event.preventDefault();this.classList.add(&#39;drag&#39;)" ondragleave="this.classList.remove(&#39;drag&#39;)" ondrop="event.preventDefault();this.classList.remove(&#39;drag&#39;);handleFile(event.dataTransfer.files[0])">
     <input id="file-inp" type="file" accept=".pdf" style="display:none" onchange="handleFile(this.files[0])">
     <div style="font-size:30px;margin-bottom:6px" id="drop-icon">📄</div>
     <div style="font-size:13px;color:var(--tx);margin-bottom:2px" id="drop-text">คลิกหรือลาก PDF มาวาง</div>
@@ -248,7 +245,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
   <div id="upload-summary" style="display:none;margin-top:10px;background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:10px 12px">
     <div id="us-text" style="font-size:11px;color:var(--mt);margin-bottom:5px"></div>
     <div id="us-chips" style="display:flex;flex-wrap:wrap;gap:4px"></div>
-    <button onclick="showTab('dash')" style="margin-top:8px;width:100%;padding:7px;border-radius:7px;background:rgba(56,189,248,.1);color:var(--ac);border:1px solid rgba(56,189,248,.2);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer">ดู Dashboard →</button>
+    <button onclick="showTab(&#39;dash&#39;)" style="margin-top:8px;width:100%;padding:7px;border-radius:7px;background:rgba(56,189,248,.1);color:var(--ac);border:1px solid rgba(56,189,248,.2);font-family:&#39;DM Mono&#39;,monospace;font-size:12px;cursor:pointer">ดู Dashboard →</button>
   </div>
 </div>
 
@@ -258,7 +255,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
       <div style="font-size:13px;font-weight:500;color:var(--tx)">Ideal Allocation</div>
       <div style="font-size:11px;color:var(--mt);margin-top:1px">แก้ตัวหนึ่ง → ตัวอื่นปรับให้รวม 100% อัตโนมัติ</div>
     </div>
-    <div id="ideal-total" style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--buy)">100.00%</div>
+    <div id="ideal-total" style="font-family:&#39;Syne&#39;,sans-serif;font-size:17px;font-weight:700;color:var(--buy)">100.00%</div>
   </div>
   <div id="ideal-editor"></div>
 </div>
@@ -267,7 +264,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
   <div id="modal" onclick="event.stopPropagation()">
     <div class="mhdr">
       <div>
-        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700" id="m-tk"></div>
+        <div style="font-family:&#39;Syne&#39;,sans-serif;font-size:16px;font-weight:700" id="m-tk"></div>
         <div style="font-size:11px;color:var(--mt);margin-top:1px" id="m-nm"></div>
       </div>
       <button onclick="closeModal()" style="background:none;border:none;color:var(--mt);font-size:16px;cursor:pointer;padding:4px">✕</button>
@@ -275,7 +272,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
     <div class="mbody" id="m-body"></div>
   </div>
 </div>
-</div><!-- end #app -->
+<!-- end #app -->
 
 <div id="toast"></div>
 
@@ -283,6 +280,7 @@ td:nth-child(2){text-align:left;max-width:130px;overflow:hidden;text-overflow:el
 // ═══════════════════════════════════════════════════════════
 // EMBEDDED DATA (March 2026 DIME statement)
 // ═══════════════════════════════════════════════════════════
+const PROXY_URL = 'https://worker.tasarattagi.workers.dev';
 const DIME_PORTFOLIO = [{"ticker": "AAPL", "name": "Apple Inc.", "sector": "Technology", "alloc": 1.24, "shares": 3.492619, "avgCost": 187.21, "price": 271.35, "totalReturn": 44.94, "mktVal": 947.72}, {"ticker": "ABBV", "name": "AbbVie Inc.", "sector": "Healthcare", "alloc": 0.69, "shares": 2.4914381, "avgCost": 177.07, "price": 211.32, "totalReturn": 19.34, "mktVal": 526.49}, {"ticker": "ACLS", "name": "Accelis Technologies Inc", "sector": "Technology", "alloc": 0.17, "shares": 0.9625639, "avgCost": 124.46, "price": 139.11, "totalReturn": 11.77, "mktVal": 133.9}, {"ticker": "ACN", "name": "Accenture PLC", "sector": "Technology", "alloc": 0.12, "shares": 0.5210773, "avgCost": 312.91, "price": 178.71, "totalReturn": -42.89, "mktVal": 93.12}, {"ticker": "ADBE", "name": "Adobe Inc.", "sector": "Technology", "alloc": 0.13, "shares": 0.415139, "avgCost": 496.05, "price": 246.1, "totalReturn": -50.39, "mktVal": 102.17}, {"ticker": "ALAB", "name": "Astera Labs Inc.", "sector": "Technology", "alloc": 0.49, "shares": 1.9376142, "avgCost": 160.23, "price": 194.74, "totalReturn": 21.54, "mktVal": 377.33}, {"ticker": "AMPH", "name": "Amphastar Pharmaceuticals", "sector": "Healthcare", "alloc": 0.05, "shares": 1.8322477, "avgCost": 49.19, "price": 21.96, "totalReturn": -55.35, "mktVal": 40.24}, {"ticker": "AMZN", "name": "Amazon.com Inc", "sector": "Consumer", "alloc": 5.23, "shares": 15.1052094, "avgCost": 203.88, "price": 265.06, "totalReturn": 30.01, "mktVal": 4003.79}, {"ticker": "ANET", "name": "Arista Networks", "sector": "Technology", "alloc": 0.1, "shares": 0.4584339, "avgCost": 129.24, "price": 172.71, "totalReturn": 33.63, "mktVal": 79.18}, {"ticker": "ARE", "name": "Alexandria Real Estate", "sector": "Real Estate", "alloc": 0.05, "shares": 0.9288343, "avgCost": 94.79, "price": 40.51, "totalReturn": -57.26, "mktVal": 37.63}, {"ticker": "ASC", "name": "Ardmore Shipping", "sector": "Industrials", "alloc": 0.32, "shares": 14.0, "avgCost": 14.52, "price": 17.72, "totalReturn": 22.05, "mktVal": 248.08}, {"ticker": "ASTS", "name": "AST SpaceMobile", "sector": "Space", "alloc": 1.53, "shares": 15.8220528, "avgCost": 50.79, "price": 73.9, "totalReturn": 45.5, "mktVal": 1169.25}, {"ticker": "AVAV", "name": "AeroVironment Inc.", "sector": "Defense", "alloc": 0.75, "shares": 2.9259156, "avgCost": 243.81, "price": 195.02, "totalReturn": -20.01, "mktVal": 570.61}, {"ticker": "AVGO", "name": "Broadcom Inc.", "sector": "Technology", "alloc": 1.92, "shares": 3.5232097, "avgCost": 206.14, "price": 417.43, "totalReturn": 102.49, "mktVal": 1470.69}, {"ticker": "AXON", "name": "Axon Enterprise Inc.", "sector": "Technology", "alloc": 0.69, "shares": 1.3139899, "avgCost": 500.26, "price": 401.76, "totalReturn": -19.69, "mktVal": 527.91}, {"ticker": "BKNG", "name": "Booking Holdings Inc.", "sector": "Consumer", "alloc": 0.16, "shares": 0.7221684, "avgCost": 171.42, "price": 168.36, "totalReturn": -1.78, "mktVal": 121.58}, {"ticker": "BLK", "name": "Blackrock Inc.", "sector": "Financials", "alloc": 0.14, "shares": 0.1008052, "avgCost": 984.18, "price": 1065.6, "totalReturn": 8.27, "mktVal": 107.42}, {"ticker": "BMBL", "name": "Bumble Inc.", "sector": "Consumer", "alloc": 0.23, "shares": 43.0299464, "avgCost": 6.06, "price": 4.15, "totalReturn": -31.49, "mktVal": 178.57}, {"ticker": "BRK.B", "name": "Berkshire Hathaway B", "sector": "Financials", "alloc": 1.23, "shares": 1.9839785, "avgCost": 478.17, "price": 473.6, "totalReturn": -0.96, "mktVal": 939.61}, {"ticker": "BRO", "name": "Brown & Brown Inc.", "sector": "Financials", "alloc": 0.02, "shares": 0.2674298, "avgCost": 111.99, "price": 60.15, "totalReturn": -46.29, "mktVal": 16.09}, {"ticker": "CAT", "name": "Caterpillar Inc.", "sector": "Industrials", "alloc": 1.31, "shares": 1.1305244, "avgCost": 296.1, "price": 890.11, "totalReturn": 200.61, "mktVal": 1006.29}, {"ticker": "CEG", "name": "Constellation Energy", "sector": "Energy", "alloc": 0.48, "shares": 1.1628806, "avgCost": 301.44, "price": 313.0, "totalReturn": 3.83, "mktVal": 363.98}, {"ticker": "CHTR", "name": "Charter Comm", "sector": "Communication", "alloc": 0.02, "shares": 0.0809622, "avgCost": 363.75, "price": 165.17, "totalReturn": -54.59, "mktVal": 13.37}, {"ticker": "CLPT", "name": "ClearPoint Neuro", "sector": "Healthcare", "alloc": 0.89, "shares": 60.7931516, "avgCost": 13.03, "price": 11.18, "totalReturn": -14.18, "mktVal": 679.67}, {"ticker": "CMCSA", "name": "Comcast Corp", "sector": "Communication", "alloc": 0.19, "shares": 5.3328325, "avgCost": 33.95, "price": 27.04, "totalReturn": -20.36, "mktVal": 144.2}, {"ticker": "COST", "name": "Costco Wholesale", "sector": "Consumer", "alloc": 1.34, "shares": 1.0145762, "avgCost": 897.85, "price": 1014.53, "totalReturn": 13.0, "mktVal": 1029.32}, {"ticker": "CRM", "name": "Salesforce Inc.", "sector": "Technology", "alloc": 0.06, "shares": 0.2757099, "avgCost": 270.43, "price": 176.53, "totalReturn": -34.72, "mktVal": 48.67}, {"ticker": "CRML", "name": "Critical Metals Corp", "sector": "Materials", "alloc": 1.3, "shares": 78.1881903, "avgCost": 9.02, "price": 12.73, "totalReturn": 41.15, "mktVal": 995.34}, {"ticker": "CRWD", "name": "CrowdStrike Holdings", "sector": "Technology", "alloc": 2.89, "shares": 4.9628064, "avgCost": 385.52, "price": 445.75, "totalReturn": 15.62, "mktVal": 2212.17}, {"ticker": "CRWV", "name": "CoreWeave Inc.", "sector": "Technology", "alloc": 0.08, "shares": 0.5241496, "avgCost": 119.3, "price": 111.6, "totalReturn": -6.45, "mktVal": 58.5}, {"ticker": "DE", "name": "Deere & Company", "sector": "Industrials", "alloc": 0.3, "shares": 0.3865019, "avgCost": 464.97, "price": 589.87, "totalReturn": 26.86, "mktVal": 227.99}, {"ticker": "DOCN", "name": "DigitalOcean Holdings", "sector": "Technology", "alloc": 0.33, "shares": 2.6065964, "avgCost": 29.41, "price": 96.43, "totalReturn": 227.88, "mktVal": 251.35}, {"ticker": "DUOL", "name": "Duolingo Inc.", "sector": "Technology", "alloc": 0.01, "shares": 0.0414237, "avgCost": 481.85, "price": 110.1, "totalReturn": -77.15, "mktVal": 4.56}, {"ticker": "ELV", "name": "Elevance Health", "sector": "Healthcare", "alloc": 1.05, "shares": 2.1362538, "avgCost": 397.91, "price": 376.42, "totalReturn": -5.4, "mktVal": 804.13}, {"ticker": "EOSE", "name": "Eos Energy Enterprises", "sector": "Energy", "alloc": 0.45, "shares": 51.5065416, "avgCost": 6.65, "price": 6.7, "totalReturn": 0.81, "mktVal": 345.09}, {"ticker": "FTNT", "name": "Fortinet Inc.", "sector": "Technology", "alloc": 0.03, "shares": 0.3009948, "avgCost": 101.53, "price": 84.31, "totalReturn": -16.96, "mktVal": 25.38}, {"ticker": "GOOGL", "name": "Alphabet Inc.", "sector": "Technology", "alloc": 6.01, "shares": 11.9489302, "avgCost": 158.78, "price": 384.8, "totalReturn": 142.35, "mktVal": 4597.95}, {"ticker": "HIMS", "name": "Hims & Hers Health", "sector": "Healthcare", "alloc": 0.31, "shares": 8.8652883, "avgCost": 27.78, "price": 27.17, "totalReturn": -2.2, "mktVal": 240.87}, {"ticker": "HOOD", "name": "Robinhood Markets", "sector": "Fintech", "alloc": 0.96, "shares": 10.0356533, "avgCost": 73.12, "price": 72.89, "totalReturn": -0.32, "mktVal": 731.5}, {"ticker": "IIPR", "name": "Innovative Industrial", "sector": "Real Estate", "alloc": 0.33, "shares": 4.6164826, "avgCost": 75.64, "price": 54.25, "totalReturn": -28.28, "mktVal": 250.44}, {"ticker": "INDI", "name": "Indie Semiconductor", "sector": "Technology", "alloc": 0.05, "shares": 7.9123985, "avgCost": 6.8, "price": 4.51, "totalReturn": -33.72, "mktVal": 35.68}, {"ticker": "INMD", "name": "InMode Ltd.", "sector": "Healthcare", "alloc": 0.04, "shares": 2.0, "avgCost": 19.47, "price": 14.47, "totalReturn": -25.67, "mktVal": 28.94}, {"ticker": "IONQ", "name": "IonQ Inc.", "sector": "Quantum", "alloc": 1.36, "shares": 23.1367588, "avgCost": 33.94, "price": 45.12, "totalReturn": 32.95, "mktVal": 1043.93}, {"ticker": "IREN", "name": "IREN Limited", "sector": "Bitcoin/AI", "alloc": 0.62, "shares": 10.3691195, "avgCost": 43.3, "price": 45.51, "totalReturn": 5.1, "mktVal": 471.9}, {"ticker": "ISRG", "name": "Intuitive Surgical", "sector": "Healthcare", "alloc": 0.78, "shares": 1.3095796, "avgCost": 475.62, "price": 457.61, "totalReturn": -3.79, "mktVal": 599.28}, {"ticker": "JPM", "name": "JPMorgan Chase", "sector": "Financials", "alloc": 0.47, "shares": 1.1371123, "avgCost": 263.63, "price": 313.23, "totalReturn": 18.81, "mktVal": 356.18}, {"ticker": "KTOS", "name": "Kratos Defense", "sector": "Defense", "alloc": 0.31, "shares": 3.7941984, "avgCost": 72.58, "price": 63.05, "totalReturn": -13.13, "mktVal": 239.22}, {"ticker": "LLY", "name": "Eli Lilly & Co.", "sector": "Healthcare", "alloc": 3.06, "shares": 2.5066645, "avgCost": 778.44, "price": 934.6, "totalReturn": 20.06, "mktVal": 2342.73}, {"ticker": "LMT", "name": "Lockheed Martin", "sector": "Industrials", "alloc": 0.63, "shares": 0.9350617, "avgCost": 459.82, "price": 517.97, "totalReturn": 12.65, "mktVal": 484.33}, {"ticker": "MA", "name": "Mastercard Inc.", "sector": "Financials", "alloc": 1.55, "shares": 2.3552359, "avgCost": 518.39, "price": 502.92, "totalReturn": -2.98, "mktVal": 1184.5}, {"ticker": "MELI", "name": "Mercado Libre", "sector": "Consumer", "alloc": 1.99, "shares": 0.8516942, "avgCost": 1929.65, "price": 1792.63, "totalReturn": -7.1, "mktVal": 1526.77}, {"ticker": "META", "name": "Meta Platforms", "sector": "Communication", "alloc": 4.77, "shares": 5.9697753, "avgCost": 601.12, "price": 611.91, "totalReturn": 1.79, "mktVal": 3652.97}, {"ticker": "MNST", "name": "Monster Beverage", "sector": "Consumer", "alloc": 0.15, "shares": 1.5280361, "avgCost": 55.23, "price": 77.07, "totalReturn": 39.55, "mktVal": 117.77}, {"ticker": "MP", "name": "MP Materials Corp", "sector": "Materials", "alloc": 0.05, "shares": 0.575018, "avgCost": 52.69, "price": 66.04, "totalReturn": 25.33, "mktVal": 37.97}, {"ticker": "MSFT", "name": "Microsoft Corp", "sector": "Technology", "alloc": 3.29, "shares": 6.1841726, "avgCost": 419.87, "price": 407.78, "totalReturn": -2.88, "mktVal": 2521.78}, {"ticker": "MU", "name": "Micron Technology", "sector": "Technology", "alloc": 0.18, "shares": 0.2738618, "avgCost": 352.44, "price": 517.16, "totalReturn": 46.74, "mktVal": 141.63}, {"ticker": "NBIS", "name": "Nebius Group", "sector": "Technology", "alloc": 0.54, "shares": 2.9813854, "avgCost": 94.46, "price": 138.23, "totalReturn": 46.33, "mktVal": 412.12}, {"ticker": "NFLX", "name": "Netflix Inc.", "sector": "Communication", "alloc": 2.87, "shares": 23.5046753, "avgCost": 98.2, "price": 93.61, "totalReturn": -4.67, "mktVal": 2200.27}, {"ticker": "NKE", "name": "Nike Inc.", "sector": "Consumer", "alloc": 0.22, "shares": 3.7267881, "avgCost": 80.7, "price": 44.36, "totalReturn": -45.03, "mktVal": 165.32}, {"ticker": "NVDA", "name": "Nvidia Corp", "sector": "Technology", "alloc": 5.99, "shares": 22.9934876, "avgCost": 141.09, "price": 199.57, "totalReturn": 41.45, "mktVal": 4588.81}, {"ticker": "OKLO", "name": "Oklo Inc.", "sector": "Energy", "alloc": 0.36, "shares": 3.7609617, "avgCost": 88.14, "price": 72.5, "totalReturn": -17.75, "mktVal": 272.67}, {"ticker": "ONDS", "name": "Ondas Inc.", "sector": "Defense/Rail", "alloc": 0.96, "shares": 73.3049375, "avgCost": 5.54, "price": 10.04, "totalReturn": 81.27, "mktVal": 735.98}, {"ticker": "ONON", "name": "On Holding AG", "sector": "Consumer", "alloc": 0.08, "shares": 1.7104948, "avgCost": 52.51, "price": 35.61, "totalReturn": -32.19, "mktVal": 60.91}, {"ticker": "PANW", "name": "Palo Alto Networks", "sector": "Technology", "alloc": 1.25, "shares": 5.3282428, "avgCost": 182.2, "price": 179.32, "totalReturn": -1.58, "mktVal": 955.46}, {"ticker": "PGY", "name": "Pagaya Technologies", "sector": "Fintech", "alloc": 0.17, "shares": 9.2661484, "avgCost": 13.71, "price": 13.89, "totalReturn": 1.29, "mktVal": 128.71}, {"ticker": "PLTR", "name": "Palantir Technologies", "sector": "Technology", "alloc": 1.87, "shares": 10.3017981, "avgCost": 93.98, "price": 139.11, "totalReturn": 48.02, "mktVal": 1433.08}, {"ticker": "PRCT", "name": "Procept BioRobotics", "sector": "Healthcare", "alloc": 0.22, "shares": 7.038793, "avgCost": 53.34, "price": 24.04, "totalReturn": -54.93, "mktVal": 169.21}, {"ticker": "RACE", "name": "Ferrari N.V.", "sector": "Consumer", "alloc": 0.36, "shares": 0.8003617, "avgCost": 436.63, "price": 347.3, "totalReturn": -20.46, "mktVal": 277.97}, {"ticker": "RBLX", "name": "Roblox Corporation", "sector": "Technology", "alloc": 0.58, "shares": 7.9842603, "avgCost": 91.41, "price": 55.26, "totalReturn": -39.54, "mktVal": 441.21}, {"ticker": "RBRK", "name": "Rubrik Inc.", "sector": "Technology", "alloc": 1.53, "shares": 22.0238173, "avgCost": 63.74, "price": 53.18, "totalReturn": -16.57, "mktVal": 1171.23}, {"ticker": "REGN", "name": "Regeneron Pharma", "sector": "Healthcare", "alloc": 0.12, "shares": 0.1245712, "avgCost": 887.28, "price": 707.06, "totalReturn": -20.31, "mktVal": 88.08}, {"ticker": "RKLB", "name": "Rocket Lab", "sector": "Space", "alloc": 5.22, "shares": 48.432905, "avgCost": 19.52, "price": 82.51, "totalReturn": 322.62, "mktVal": 3996.2}, {"ticker": "RTX", "name": "RTX Corporation", "sector": "Industrials", "alloc": 0.08, "shares": 0.3428668, "avgCost": 174.7, "price": 176.07, "totalReturn": 0.78, "mktVal": 60.37}, {"ticker": "SNOW", "name": "Snowflake Inc.", "sector": "Technology", "alloc": 0.03, "shares": 0.142999, "avgCost": 209.44, "price": 136.47, "totalReturn": -34.84, "mktVal": 19.52}, {"ticker": "SNPS", "name": "Synopsys Inc.", "sector": "Technology", "alloc": 1.33, "shares": 2.1103678, "avgCost": 437.27, "price": 482.6, "totalReturn": 10.37, "mktVal": 1018.46}, {"ticker": "SOFI", "name": "SoFi Technologies", "sector": "Fintech", "alloc": 0.65, "shares": 30.8647875, "avgCost": 18.36, "price": 16.1, "totalReturn": -12.32, "mktVal": 496.92}, {"ticker": "SYNA", "name": "Synaptics Inc.", "sector": "Technology", "alloc": 0.36, "shares": 2.9431826, "avgCost": 81.95, "price": 93.59, "totalReturn": 14.21, "mktVal": 275.45}, {"ticker": "TEM", "name": "Tempus AI", "sector": "AI/Biotech", "alloc": 1.86, "shares": 25.6373233, "avgCost": 62.13, "price": 55.48, "totalReturn": -10.7, "mktVal": 1422.36}, {"ticker": "TGLS", "name": "Tecnoglass Inc.", "sector": "Industrials", "alloc": 0.22, "shares": 3.837337, "avgCost": 61.4, "price": 43.08, "totalReturn": -29.84, "mktVal": 165.31}, {"ticker": "TGT", "name": "Target Corporation", "sector": "Consumer", "alloc": 0.59, "shares": 3.4952905, "avgCost": 131.83, "price": 129.75, "totalReturn": -1.58, "mktVal": 453.51}, {"ticker": "TMDX", "name": "TransMedics Group", "sector": "Healthcare", "alloc": 1.92, "shares": 14.5806763, "avgCost": 105.57, "price": 100.79, "totalReturn": -4.52, "mktVal": 1469.59}, {"ticker": "TROW", "name": "T. Rowe Price", "sector": "Financials", "alloc": 0.15, "shares": 1.0906035, "avgCost": 108.9, "price": 102.88, "totalReturn": -5.53, "mktVal": 112.2}, {"ticker": "TSLA", "name": "Tesla Inc.", "sector": "EV/Tech", "alloc": 0.9, "shares": 1.8104868, "avgCost": 316.15, "price": 381.63, "totalReturn": 20.71, "mktVal": 690.94}, {"ticker": "UBER", "name": "Uber Technologies", "sector": "Technology", "alloc": 0.66, "shares": 6.8053206, "avgCost": 74.17, "price": 74.61, "totalReturn": 0.6, "mktVal": 507.74}, {"ticker": "UNH", "name": "UnitedHealth Group", "sector": "Healthcare", "alloc": 1.49, "shares": 3.0866743, "avgCost": 402.27, "price": 370.48, "totalReturn": -7.9, "mktVal": 1143.55}, {"ticker": "UPS", "name": "United Parcel Service", "sector": "Industrials", "alloc": 0.2, "shares": 1.3921368, "avgCost": 129.51, "price": 108.8, "totalReturn": -15.99, "mktVal": 151.46}, {"ticker": "V", "name": "Visa Inc.", "sector": "Financials", "alloc": 2.4, "shares": 5.5755356, "avgCost": 303.31, "price": 329.84, "totalReturn": 8.75, "mktVal": 1839.03}, {"ticker": "WM", "name": "Waste Management", "sector": "Industrials", "alloc": 1.25, "shares": 4.1071165, "avgCost": 214.95, "price": 232.55, "totalReturn": 8.19, "mktVal": 955.11}, {"ticker": "WMT", "name": "Walmart Inc.", "sector": "Consumer", "alloc": 0.46, "shares": 2.655524, "avgCost": 71.08, "price": 131.93, "totalReturn": 85.61, "mktVal": 350.34}, {"ticker": "ZTS", "name": "Zoetis Inc.", "sector": "Healthcare", "alloc": 0.05, "shares": 0.3611089, "avgCost": 164.88, "price": 114.97, "totalReturn": -30.27, "mktVal": 41.52}, {"ticker": "COPX", "name": "Global X Copper Miners ETF", "sector": "Commodity", "alloc": 0.08, "shares": 0.7469454, "avgCost": 81.76, "price": 79.61, "totalReturn": -2.63, "mktVal": 59.46}, {"ticker": "REMX", "name": "VanEck Rare Earth ETF", "sector": "Commodity", "alloc": 0.44, "shares": 3.1703733, "avgCost": 88.58, "price": 105.43, "totalReturn": 19.02, "mktVal": 334.25}, {"ticker": "SCHD", "name": "Schwab US Dividend ETF", "sector": "ETF", "alloc": 0.05, "shares": 1.2159609, "avgCost": 30.7, "price": 32.07, "totalReturn": 4.46, "mktVal": 39.0}, {"ticker": "SLV", "name": "iShares Silver Trust", "sector": "Commodity", "alloc": 0.35, "shares": 4.0356219, "avgCost": 68.21, "price": 66.66, "totalReturn": -2.27, "mktVal": 269.01}, {"ticker": "YMAG", "name": "YieldMax Mag 7 ETF", "sector": "ETF", "alloc": 0.13, "shares": 8.0517499, "avgCost": 17.5, "price": 12.8, "totalReturn": -26.86, "mktVal": 103.06}, {"ticker": "ARM", "name": "Arm Holdings", "sector": "Technology", "alloc": 1.49, "shares": 5.4258536, "avgCost": 125.64, "price": 210.32, "totalReturn": 67.41, "mktVal": 1141.17}, {"ticker": "ASML", "name": "ASML Holding NV", "sector": "Technology", "alloc": 2.57, "shares": 1.367173, "avgCost": 793.56, "price": 1438.99, "totalReturn": 81.33, "mktVal": 1967.35}, {"ticker": "CHA", "name": "Chagee Holdings", "sector": "Consumer", "alloc": 0.1, "shares": 7.0, "avgCost": 28.62, "price": 11.1, "totalReturn": -61.22, "mktVal": 77.7}, {"ticker": "NVO", "name": "Novo Nordisk", "sector": "Healthcare", "alloc": 1.9, "shares": 34.3858145, "avgCost": 89.57, "price": 42.22, "totalReturn": -52.86, "mktVal": 1451.77}, {"ticker": "TSM", "name": "Taiwan Semiconductor", "sector": "Technology", "alloc": 3.05, "shares": 5.8922986, "avgCost": 221.25, "price": 396.06, "totalReturn": 79.01, "mktVal": 2333.7}]; // April 2026 default — overridden when user uploads PDF
 const ENDROSSI_IDEAL = {"GOOGL": 8.0, "NVDA": 7.0, "AMZN": 6.5, "TSM": 5.5, "LLY": 5.5, "V": 5.0, "MSFT": 5.0, "ASML": 3.5, "META": 3.0, "AVGO": 2.5, "COST": 2.5, "PLTR": 2.5, "NFLX": 2.0, "ARM": 2.0, "CAT": 2.0, "ABBV": 2.0, "AAPL": 1.5, "MA": 2.0, "RKLB": 2.0, "CRWD": 1.5, "TEM": 1.5, "WM": 1.5, "LMT": 1.5, "WMT": 1.5, "JPM": 1.5, "ISRG": 1.5, "ASTS": 1.5, "TMDX": 1.0, "SNPS": 0.8, "AVAV": 0.7, "AXON": 0.7, "MELI": 1.0, "DE": 0.4, "KTOS": 0.4, "MNST": 0.2, "IONQ": 0.8, "TSLA": 0.7, "CRWV": 0.5, "HOOD": 0.5, "ONDS": 0.5, "RBRK": 0.5, "RBLX": 0.5, "MU": 0.5, "CEG": 0.5, "PANW": 0.5, "EOSE": 0.4, "IREN": 0.4, "NBIS": 0.4, "SOFI": 0.4, "UBER": 0.4, "UNH": 0.4, "OKLO": 0.3, "ANET": 0.2, "ALAB": 0.2, "CRML": 0.3, "CLPT": 0.2, "SLV": 1.0, "COPX": 1.2, "REMX": 1.0, "MP": 0.5};
 const TIER_MAP       = {"GOOGL": "T1", "NVDA": "T1", "AMZN": "T1", "TSM": "T1", "LLY": "T1", "V": "T1", "MSFT": "T1", "ASML": "T1", "META": "T2", "AVGO": "T2", "COST": "T2", "PLTR": "T2", "NFLX": "T2", "ARM": "T2", "CAT": "T2", "ABBV": "T2", "AAPL": "T2", "MA": "T2", "RKLB": "T2", "CRWD": "T2", "TEM": "T2", "WM": "T2", "LMT": "T2", "WMT": "T2", "JPM": "T2", "ISRG": "T2", "ASTS": "T2", "TMDX": "T2", "SNPS": "T2", "AVAV": "T2", "AXON": "T2", "MELI": "T2", "DE": "T2", "KTOS": "T2", "MNST": "T2", "IONQ": "T3", "TSLA": "T3", "CRWV": "T3", "HOOD": "T3", "ONDS": "T3", "RBRK": "T3", "RBLX": "T3", "MU": "T3", "CEG": "T3", "PANW": "T3", "EOSE": "T3", "IREN": "T3", "NBIS": "T3", "SOFI": "T3", "UBER": "T3", "UNH": "T3", "OKLO": "T3", "ANET": "T3", "ALAB": "T3", "CRML": "T3", "CLPT": "T3", "SLV": "CM", "COPX": "CM", "REMX": "CM", "MP": "CM"};
@@ -501,7 +499,10 @@ async function fetchSignalBatch(tickers) {
     'rsi = RSI(14) approx, sma20rel = % above/below SMA20, macdBull = MACD histogram positive.\n' +
     'Use current market knowledge. Return ONLY the JSON array, no markdown.';
 
-  var resp = await fetch('https://api.anthropic.com/v1/messages', {
+  if (!PROXY_URL || PROXY_URL.includes('YOUR_SUBDOMAIN')) {
+      throw new Error('ต้องตั้งค่า PROXY_URL ก่อน กด ℹ เพื่อดูวิธี');
+    }
+    var resp = await fetch(PROXY_URL, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -568,7 +569,11 @@ async function fetchAllSignals() {
   updateMktStats();
   document.getElementById('rt-time').textContent = new Date().toLocaleTimeString('th-TH');
   btn.textContent = '⟳ Signals'; btn.disabled = false;
-  showToast('✓ โหลด signal ' + count + ' ตัว');
+  if (count > 0) {
+    showToast('✓ โหลด signal ' + count + ' ตัว');
+  } else {
+    showToast('⚠ ต้องตั้งค่า Proxy ก่อน — กดปุ่ม ℹ', '#f97316');
+  }
 }
 
 async function fetchOneSignal(ticker) {
@@ -605,8 +610,9 @@ function updatePriceCell(ticker) {
   portfolio.forEach(function(p){ pm[p.ticker]=p; });
   var p = pm[ticker]; if (!p) return;
   var rt = rtData[ticker];
-  var curPx = rt&&rt.price ? rt.price : p.price;
-  var pnlPct = p.avgCost>0&&curPx>0 ? (curPx-p.avgCost)/p.avgCost*100 : p.totalReturn||0;
+  var curPx  = (rt && rt.price > 0) ? rt.price : (p.price || 0);
+  var avgCost = p.avgCost || 0;
+  var pnlPct  = (avgCost > 0 && curPx > 0) ? (curPx - avgCost) / avgCost * 100 : (p.totalReturn || 0);
   var dayChg = rt ? rt.changePct : null;
   var html = '';
   if (curPx>0) html += '<div style="font-size:11px;color:var(--tx)">$'+curPx.toFixed(2)+(rt&&rt.price?'<span style="font-size:8px;color:var(--ac)"> ●</span>':'')+'</div>';
@@ -729,8 +735,9 @@ function render() {
     var nDCA = r.diff>0 ? Math.ceil(gap/30) : 0;
     var dcaTxt = r.diff>0.1 ? nDCA+' ไม้ (~$'+Math.round(gap)+')' :
                  r.diff<-0.5 ? 'trim ~$'+Math.round(Math.abs(gap)) : '-';
-    var curPx   = rt&&rt.price ? rt.price : r.price;
-    var pnlPct  = r.avgCost>0&&curPx>0 ? (curPx-r.avgCost)/r.avgCost*100 : r.ret;
+    var curPx   = (rt && rt.price > 0) ? rt.price : (r.price || 0);
+    var avgCost2 = r.avgCost || 0;
+    var pnlPct  = (avgCost2 > 0 && curPx > 0) ? (curPx - avgCost2) / avgCost2 * 100 : (r.ret || 0);
     var dayChg  = rt ? rt.changePct : null;
     var barW    = Math.min(r.current/Math.max(r.ideal,r.current,0.01)*100,100);
     var barC    = r.diff>0.1?'#22c55e':r.diff<-0.1?'#f97316':'#64748b';
@@ -992,5 +999,6 @@ document.getElementById('ps-name').addEventListener('keydown', function(e){
   if (e.key==='Enter') createProfile();
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
